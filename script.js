@@ -217,7 +217,7 @@ function shuffle(array) {
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
-    document.getElementById("result-container").classList.add("hidden");
+    //document.getElementById("result-container").classList.add("hidden");
     document.getElementById("quiz-container").classList.remove("hidden");
     generateQuestion();
 }
@@ -279,14 +279,14 @@ function checkAnswer(selectedCapital) {
         } else {
             endQuiz();  // End the quiz if all questions are answered
         }
-    }, 2000);  // Delay for 2 seconds
+    }, 1000);  // Delay for 1 second
 }
 
 // End the quiz and show the score
 function endQuiz() {
     document.getElementById("quiz-container").classList.add("hidden");
     document.getElementById("score").innerText = score;
-    document.getElementById("result-container").classList.remove("hidden");
+    //document.getElementById("result-container").classList.remove("hidden");
 }
 
 // Start the quiz initially
