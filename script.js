@@ -217,7 +217,7 @@ function shuffle(array) {
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
-    //document.getElementById("result-container").classList.add("hidden");
+    shuffle(capitals);  // Shuffle the countries list
     document.getElementById("quiz-container").classList.remove("hidden");
     generateQuestion();
 }
@@ -249,17 +249,18 @@ function generateQuestion() {
 // Check the selected answer
 function checkAnswer(selectedCapital) {
     const choicesContainer = document.getElementById("choices-container");
-    const correctAudio = new Audio('https://github.com/stribizhev/Test/raw/refs/heads/master/good.mp3'); // Path to your audio file
-    const wrongAudio = new Audio('https://github.com/stribizhev/Test/raw/refs/heads/master/hm.mp3');
+    const correctAudio = new Audio('https://github.com/stribizhev/Test/raw/refs/heads/master/good.mp3');  // Path to your audio file
+    const wrongAudio = new Audio('https://github.com/stribizhev/Test/raw/refs/heads/master/hm.mp3');  // Path to your audio file
+
     // Disable all buttons after a choice is made
     const buttons = choicesContainer.getElementsByTagName("button");
     for (let button of buttons) {
-        button.disabled = true; // Disable buttons
+        button.disabled = true;  // Disable buttons
         if (button.innerText === currentQuestion.capital) {
-            button.style.backgroundColor = "green"; // Highlight the correct answer
+            button.style.backgroundColor = "green";  // Highlight the correct answer
         }
         if (button.innerText === selectedCapital && selectedCapital !== currentQuestion.capital) {
-            button.style.backgroundColor = "red"; // Highlight the wrong answer
+            button.style.backgroundColor = "red";  // Highlight the wrong answer
         }
     }
 
@@ -268,10 +269,10 @@ function checkAnswer(selectedCapital) {
         score++;
         correctAudio.play();  // Play the audio if the answer is correct
     } else {
-       wrongAudio.play();  // Play the audio if the answer is correct
+        wrongAudio.play();  // Play the audio if the answer is incorrect
     }
 
-    // Move to the next question after a short delay (e.g., 2 seconds)
+    // Move to the next question after a short delay (e.g., 1 second)
     setTimeout(() => {
         currentQuestionIndex++;
         if (currentQuestionIndex < capitals.length) {  // Check if more questions are available
@@ -285,8 +286,9 @@ function checkAnswer(selectedCapital) {
 // End the quiz and show the score
 function endQuiz() {
     document.getElementById("quiz-container").classList.add("hidden");
-    document.getElementById("score").innerText = score;
-    //document.getElementById("result-container").classList.remove("hidden");
+    document.getElementById("score").innerText = `Twój wynik to: ${score}/${capitals.length}`;
+    // Optionally show a result container if you have one
+    // document.getElementById("result-container").classList.remove("hidden");
 }
 
 // Start the quiz initially
