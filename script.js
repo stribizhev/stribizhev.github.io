@@ -200,6 +200,7 @@ const capitals = [
 
 // Variables for quiz
 let currentQuestionIndex = 0;
+let delay = 1000; 
 let score = 0;
 let currentQuestion = {};
 let choices = [];
@@ -267,9 +268,11 @@ function checkAnswer(selectedCapital) {
     // Check if the selected answer is correct
     if (selectedCapital === currentQuestion.capital) {
         score++;
+        delay = 1000;
         correctAudio.play();  // Play the audio if the answer is correct
     } else {
         wrongAudio.play();  // Play the audio if the answer is incorrect
+        delay = 5000;
     }
 
     // Move to the next question after a short delay (e.g., 1 second)
@@ -280,7 +283,7 @@ function checkAnswer(selectedCapital) {
         } else {
             endQuiz();  // End the quiz if all questions are answered
         }
-    }, 1000);  // Delay for 1 second
+    }, delay);  // Delay for 1 second
 }
 
 // End the quiz and show the score
